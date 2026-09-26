@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --ice:#eef4fb; --ink:#0b1e3f; }
+
+html { scroll-behavior: smooth; }
+body { background:#f6f9fd; color:var(--ink); overflow-x:hidden; }
+* { -webkit-tap-highlight-color: transparent; }
+
+::selection { background:#1d4ed8; color:#fff; }
+::-webkit-scrollbar { width:10px; }
+::-webkit-scrollbar-track { background:#eef4fb; }
+::-webkit-scrollbar-thumb { background:linear-gradient(#1d4ed8,#123a6b); border-radius:8px; }
+
+.glass {
+  background:rgba(255,255,255,.62);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 8px 32px rgba(11,30,63,.08);
+}
+
+.eyebrow {
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-size:.78rem; font-weight:800; letter-spacing:.25em;
+  color:#123a6b; text-transform:uppercase;
+}
+
+@keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.marquee-track { animation:marquee 30s linear infinite; }
+.marquee-track:hover { animation-play-state:paused; }
+
+@keyframes pulse-dot { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.3; transform:scale(.65);} }
+.live-dot { animation:pulse-dot 1.6s ease-in-out infinite; }
+
+@keyframes ecg { to { stroke-dashoffset:-240; } }
+.ecg-path { stroke-dasharray:240; animation:ecg 3s linear infinite; }
+
+@keyframes floaty { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+.float-slow { animation:floaty 6s ease-in-out infinite; }
+.float-slower { animation:floaty 8s ease-in-out infinite; animation-delay:1.2s; }
+
+.grain::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:70; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hover-lift { transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s; }
+.hover-lift:hover { transform:translateY(-8px); box-shadow:0 24px 48px rgba(11,30,63,.14); }
+
+.img-zoom img { transition:transform 1s cubic-bezier(.22,1,.36,1); }
+.img-zoom:hover img { transform:scale(1.07); }
