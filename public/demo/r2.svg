@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#e5edfa"/><stop offset="1" stop-color="#ffffff"/>
+</linearGradient>
+<radialGradient id="glow" cx=".8" cy=".15" r=".9">
+<stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<rect width="800" height="600" fill="url(#g)"/>
+<rect width="800" height="600" fill="url(#glow)"/>
+<circle cx="110" cy="90" r="150" fill="#ffffff" fill-opacity=".5"/>
+<circle cx="720" cy="520" r="190" fill="#1d4ed8" fill-opacity=".10"/>
+<polyline points="0,330 16,302 32,275 48,250 64,227 80,209 96,194 112,185 128,180 144,181 160,187 176,198 192,214 208,234 224,257 240,283 256,311 272,339 288,367 304,393 320,418 336,439 352,456 368,469 384,477 400,480 416,478 432,470 448,457 464,440 480,419 496,395 512,369 528,341 544,313 560,285 576,259 592,236 608,215 624,199 640,188 656,181 672,180 688,184 704,194 720,208 736,226 752,248 768,273 784,300 800,328" fill="none" stroke="#ffffff" stroke-width="7" stroke-opacity=".85" stroke-linecap="round"/><polyline points="0,330 16,358 32,385 48,410 64,433 80,451 96,466 112,475 128,480 144,479 160,473 176,462 192,446 208,426 224,403 240,377 256,349 272,321 288,293 304,267 320,242 336,221 352,204 368,191 384,183 400,180 416,182 432,190 448,203 464,220 480,241 496,265 512,291 528,319 544,347 560,375 576,401 592,424 608,445 624,461 640,472 656,479 672,480 688,476 704,466 720,452 736,434 752,412 768,387 784,360 800,332" fill="none" stroke="#1d4ed8" stroke-width="7" stroke-opacity=".55" stroke-linecap="round"/><line x1="40" y1="262" x2="40" y2="398" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/><line x1="130" y1="180" x2="130" y2="480" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/><line x1="220" y1="251" x2="220" y2="409" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/><line x1="310" y1="403" x2="310" y2="257" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/><line x1="400" y1="480" x2="400" y2="180" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/><line x1="490" y1="404" x2="490" y2="256" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/><line x1="580" y1="253" x2="580" y2="407" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/><line x1="670" y1="180" x2="670" y2="480" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/><line x1="760" y1="260" x2="760" y2="400" stroke="#ffffff" stroke-opacity=".5" stroke-width="3"/>
+<text x="740" y="560" text-anchor="end" font-family="serif" font-size="30" font-weight="bold" fill="#0b1e3f" fill-opacity=".35">PAPER</text>
+</svg>
