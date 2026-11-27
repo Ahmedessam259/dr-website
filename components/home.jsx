@@ -75,7 +75,7 @@ export function Hero() {
           <Reveal delay={.55}>
             <div className="mt-8 flex flex-wrap gap-4">
               <Magnetic>
-                <Link href="/conferences" className="btn-sheen inline-flex items-center gap-2 bg-ink text-white rounded-full px-8 py-4 font-bold hover:bg-royal transition-colors" style={{ fontSize: fs(typo.navLink) }}>
+                <Link href="/conferences" className="btn-sheen inline-flex items-center gap-2 bg-ink dark:bg-royal text-white rounded-full px-8 py-4 font-bold hover:bg-royal transition-colors" style={{ fontSize: fs(typo.navLink) }}>
                   {s.heroBtnPrimary || 'المؤتمرات القادمة'} <Arrow />
                 </Link>
               </Magnetic>
