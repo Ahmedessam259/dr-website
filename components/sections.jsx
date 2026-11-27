@@ -118,6 +118,7 @@ export function Gallery() {
 export function Research() {
   const { s, typo } = useSite()
   const items = useCollection('research') || []
+  const [lightbox, setLightbox] = useState(null)
   const fs = (v) => `calc(${v}rem * ${typo.scale})`
   return (
     <section className="pt-32 pb-20 px-6 relative min-h-screen">
@@ -141,16 +142,34 @@ export function Research() {
                 <h3 className="font-black mt-5 leading-snug" style={{ fontSize: fs(typo.cardTitle) }}>{r.title}</h3>
                 {r.authors && <div className="text-xs font-bold text-ink/45 mt-2">{r.authors}</div>}
                 <p className="text-ink/55 leading-relaxed mt-3 line-clamp-3 flex-1" style={{ fontSize: fs(typo.cardBody) }}>{r.abstract}</p>
-                <a href={r.link || r.image || '#'} target="_blank" rel="noreferrer"
-                  className="btn-sheen mt-6 inline-flex items-center justify-center gap-2 border-2 border-ink text-ink rounded-full px-6 py-3 font-bold hover:bg-ink hover:text-white dark:hover:text-[#0b1e3f] transition-colors" style={{ fontSize: fs(typo.navLink) }}>
-                  {s.researchReadCta || 'اقرأ البحث'} <Arrow />
-                </a>
+                {r.link ? (
+                  <a href={r.link} target="_blank" rel="noreferrer"
+                    className="btn-sheen mt-6 inline-flex items-center justify-center gap-2 border-2 border-ink text-ink rounded-full px-6 py-3 font-bold hover:bg-ink hover:text-white dark:hover:text-[#0b1e3f] transition-colors" style={{ fontSize: fs(typo.navLink) }}>
+                    {s.researchReadCta || 'اقرأ البحث'} <Arrow />
+                  </a>
+                ) : (
+                  <button type="button" onClick={() => r.image && setLightbox(r.image)}
+                    className="btn-sheen mt-6 inline-flex items-center justify-center gap-2 border-2 border-ink text-ink rounded-full px-6 py-3 font-bold hover:bg-ink hover:text-white dark:hover:text-[#0b1e3f] transition-colors" style={{ fontSize: fs(typo.navLink) }}>
+                    {s.researchReadCta || 'اقرأ البحث'} <Arrow />
+                  </button>
+                )}
               </article>
               </Tilt>
             </Reveal>
           ))}
         </div>
       </div>
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[90] bg-ink/80 dark:bg-black/80 backdrop-blur-sm grid place-items-center p-6"
+            onClick={() => setLightbox(null)}>
+            <motion.img initial={{ scale: .85, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: .9, opacity: 0 }}
+              transition={{ duration: .5, ease }}
+              src={lightbox} className="max-h-[85vh] max-w-full rounded-3xl shadow-2xl" alt="" />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
