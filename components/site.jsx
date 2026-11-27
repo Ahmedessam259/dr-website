@@ -48,7 +48,7 @@ export function SocialIcon({ name, href, label, fontSize }) {
     <Tilt max={8} radius={16}>
     <a href={href || '#'} target="_blank" rel="noreferrer" aria-label={label}
       className="group flex items-center gap-3 glass card-frame rounded-2xl px-5 py-4 hover-lift">
-      <span className="w-10 h-10 rounded-xl bg-ink text-white grid place-items-center group-hover:bg-gradient-to-br group-hover:from-royal group-hover:to-teal transition-all duration-500">
+      <span className="w-10 h-10 rounded-xl bg-ink dark:bg-royal text-white grid place-items-center group-hover:bg-gradient-to-br group-hover:from-royal group-hover:to-teal transition-all duration-500">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d={ICONS[name]} /></svg>
       </span>
       <span className="font-bold" style={{ fontSize: fontSize ? `${fontSize}rem` : undefined }}>{label}</span>
@@ -98,6 +98,33 @@ const toRoute = (url) => ROUTE_MAP[url] || url || '/'
 const isInternal = (url) => url.startsWith('/')
 
 /* ---------- شريط التنقل ---------- */
+/* ---------- زر الوضع الداكن/الفاتح ---------- */
+function ThemeToggle() {
+  const [dark, setDark] = useState(false)
+  useEffect(() => { setDark(document.documentElement.classList.contains('dark')) }, [])
+  const toggle = () => {
+    const d = !dark
+    setDark(d)
+    document.documentElement.classList.toggle('dark', d)
+    try { localStorage.setItem('dr-theme', d ? 'dark' : 'light') } catch (e) {}
+  }
+  return (
+    <button onClick={toggle} aria-label={dark ? 'الوضع الفاتح' : 'الوضع الداكن'} title={dark ? 'الوضع الفاتح' : 'الوضع الداكن'}
+      className="w-11 h-11 glass rounded-2xl grid place-items-center text-ink hover:text-royal transition-colors">
+      {dark ? (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-5 h-5">
+          <circle cx="12" cy="12" r="4.2" />
+          <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4L19 19M19 5l-1.6 1.6M6.6 17.4L5 19" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+        </svg>
+      )}
+    </button>
+  )
+}
+
 export function Navbar() {
   const { s, typo } = useSite()
   const pathname = usePathname()
@@ -154,9 +181,10 @@ export function Navbar() {
           {finalLinks.map((l, i) => (<li key={l.url + i}><NavItem l={l} /></li>))}
         </ul>
         <a href={s.socials?.facebook || '#'} target="_blank" rel="noreferrer"
-          className="btn-sheen hidden sm:inline-flex items-center gap-2 bg-ink text-white px-5 py-2.5 rounded-full font-bold hover:bg-royal transition-colors" style={{ fontSize: fs(typo.navLink) }}>
+          className="btn-sheen hidden sm:inline-flex items-center gap-2 bg-ink dark:bg-royal text-white px-5 py-2.5 rounded-full font-bold hover:bg-royal transition-colors" style={{ fontSize: fs(typo.navLink) }}>
           {s.navFacebookCta || 'تابعني على فيسبوك'} <Arrow />
         </a>
+        <ThemeToggle />
 
         {/* زر قائمة الموبايل */}
         <button onClick={() => setOpen(!open)} aria-label="القائمة"
