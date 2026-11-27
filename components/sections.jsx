@@ -182,8 +182,16 @@ export function About() {
           </Reveal>
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
+          {s.heroImage && (
+            <Reveal className="sm:col-span-2 flex justify-center">
+              <Tilt max={10} radius={999}>
+                <img src={s.heroImage} alt="صورتك الشخصية"
+                  className="w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover ring-4 ring-white shadow-2xl shadow-royal/25 float-soft" />
+              </Tilt>
+            </Reveal>
+          )}
           {socials.map(([k, label], i) => (
-            <Reveal key={k} delay={i * .06} className={i === 0 ? 'sm:col-span-2' : ''}>
+            <Reveal key={k} delay={.1 + i * .06} className={i === 0 ? 'sm:col-span-2' : ''}>
               <SocialIcon name={k} href={s.socials?.[k]} label={label} fontSize={typo.navLink * typo.scale} />
             </Reveal>
           ))}
