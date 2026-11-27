@@ -2,17 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { --ice:#eef4fb; --ink:#0b1e3f; }
+:root { --ice:#eef4fb; --ink:#0b1e3f; --teal:#0f9d8f; }
 
 html { scroll-behavior: smooth; }
 body { background:#f6f9fd; color:var(--ink); overflow-x:hidden; }
 * { -webkit-tap-highlight-color: transparent; }
 
-::selection { background:#1d4ed8; color:#fff; }
+::selection { background:#0f9d8f; color:#fff; }
 ::-webkit-scrollbar { width:10px; }
 ::-webkit-scrollbar-track { background:#eef4fb; }
-::-webkit-scrollbar-thumb { background:linear-gradient(#1d4ed8,#123a6b); border-radius:8px; }
+::-webkit-scrollbar-thumb { background:linear-gradient(#1d4ed8,#0f9d8f); border-radius:8px; }
 
+/* ---------- الأساسيات (الأدمن بيستخدمها برضه — متتحذفش) ---------- */
 .glass {
   background:rgba(255,255,255,.62);
   backdrop-filter:blur(18px);
@@ -53,3 +54,82 @@ body { background:#f6f9fd; color:var(--ink); overflow-x:hidden; }
 
 @keyframes float-soft { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .float-soft { animation: float-soft 6s ease-in-out infinite; }
+
+/* ---------- هوية التصميم الجديدة ---------- */
+
+/* نمط "بلاس" طبي خافت في الخلفية */
+.cross-bg {
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 22v12M22 28h12' stroke='%231d4ed8' stroke-opacity='.07' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.cross-bg-dark {
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 22v12M22 28h12' stroke='%23ffffff' stroke-opacity='.08' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* نص متدرج أزرق → تركواز */
+.gradient-text {
+  background:linear-gradient(120deg,#1d4ed8 20%,#0f9d8f 80%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+
+/* شريط متحرك */
+@keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.marquee-track { display:flex; width:max-content; animation:marquee 30s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state:paused; }
+
+/* نبضة قلب للأيقونات الطبية */
+@keyframes heartbeat { 0%,100%{transform:scale(1);} 14%{transform:scale(1.14);} 28%{transform:scale(1);} 42%{transform:scale(1.14);} 56%{transform:scale(1);} }
+.heartbeat { animation:heartbeat 2.4s ease-in-out infinite; transform-origin:center; }
+
+/* حلقة نبض حوالين العنصر */
+@keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(15,157,143,.4);} 70%{box-shadow:0 0 0 14px rgba(15,157,143,0);} 100%{box-shadow:0 0 0 0 rgba(15,157,143,0);} }
+.pulse-ring { animation:pulse-ring 2.8s ease-out infinite; }
+
+/* لمعة بتعدي على الأزرار */
+@keyframes sheen { from { transform:translateX(-140%) skewX(-18deg); } to { transform:translateX(260%) skewX(-18deg); } }
+.btn-sheen { position:relative; overflow:hidden; isolation:isolate; }
+.btn-sheen::before {
+  content:''; position:absolute; top:0; bottom:0; width:38%; z-index:1; pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:translateX(-140%) skewX(-18deg);
+}
+.btn-sheen:hover::before { animation:sheen .9s ease; }
+
+/* لينك الناف بار بخط بيترسم */
+.nav-link { position:relative; }
+.nav-link::after {
+  content:''; position:absolute; bottom:-5px; right:0; width:0; height:2px; border-radius:2px;
+  background:linear-gradient(90deg,#0f9d8f,#1d4ed8);
+  transition:width .45s cubic-bezier(.22,1,.36,1);
+}
+.nav-link:hover::after { width:100%; }
+
+/* إطار متدرج بيظهر مع الهاوفر على الكروت */
+.card-frame { position:relative; }
+.card-frame::before {
+  content:''; position:absolute; inset:0; border-radius:inherit; padding:1.5px; pointer-events:none;
+  background:linear-gradient(140deg,rgba(29,78,216,.55),rgba(15,157,143,.55),transparent 65%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:0; transition:opacity .5s;
+}
+.card-frame:hover::before { opacity:1; }
+
+/* دوران بطيء للزخارف */
+@keyframes spin-slow { to { transform:rotate(360deg); } }
+.spin-slower { animation:spin-slow 26s linear infinite; }
+
+/* خط ECG فاصل بين الأقسام */
+.ecg-divider { stroke-dasharray:240; animation:ecg 4s linear infinite; }
+
+/* ظل ناعم للبانل الغامق */
+.deep-panel {
+  background:linear-gradient(150deg,#0b1e3f 0%,#123a6b 55%,#0f3d5c 100%);
+  box-shadow:0 40px 80px -20px rgba(8,28,54,.45);
+}
+.glass-dark {
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.16);
+}
