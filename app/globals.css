@@ -88,6 +88,11 @@ body { background:rgb(var(--c-mist)); color:rgb(var(--c-ink)); overflow-x:hidden
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 22v12M22 28h12' stroke='%23ffffff' stroke-opacity='.08' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
+/* حركة خفيفة لعلامات الزائد */
+@keyframes crossDrift { from { background-position:0 0 } to { background-position:56px 56px } }
+.cross-bg, .cross-bg-dark { animation: crossDrift 14s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .cross-bg, .cross-bg-dark { animation:none } }
+
 /* نص متدرج أزرق → تركواز */
 .gradient-text {
   background:linear-gradient(120deg,#1d4ed8 20%,#0f9d8f 80%);
