@@ -9,6 +9,9 @@ module.exports = {
         royal: '#1d4ed8',
         ice: '#eef4fb',
         mist: '#f6f9fd',
+        teal: '#0f9d8f',
+        tealbright: '#2dd4bf',
+        deep: '#081c36',
       },
       fontFamily: {
         serif: ['var(--font-playfair)', 'serif'],
