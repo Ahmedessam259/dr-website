@@ -141,7 +141,7 @@ export function Research() {
                 <h3 className="font-black mt-5 leading-snug" style={{ fontSize: fs(typo.cardTitle) }}>{r.title}</h3>
                 {r.authors && <div className="text-xs font-bold text-ink/45 mt-2">{r.authors}</div>}
                 <p className="text-ink/55 leading-relaxed mt-3 line-clamp-3 flex-1" style={{ fontSize: fs(typo.cardBody) }}>{r.abstract}</p>
-                <a href={r.link || '#'} target="_blank" rel="noreferrer"
+                <a href={r.link || r.image || '#'} target="_blank" rel="noreferrer"
                   className="btn-sheen mt-6 inline-flex items-center justify-center gap-2 border-2 border-ink text-ink rounded-full px-6 py-3 font-bold hover:bg-ink hover:text-white dark:hover:text-[#0b1e3f] transition-colors" style={{ fontSize: fs(typo.navLink) }}>
                   {s.researchReadCta || 'اقرأ البحث'} <Arrow />
                 </a>
