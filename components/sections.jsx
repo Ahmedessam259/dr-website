@@ -27,7 +27,7 @@ export function Conferences() {
             <Reveal key={c.id || i} delay={i * .08} className="h-full">
               <Tilt max={7} radius={32} className="h-full">
               <article className="glass card-frame rounded-[2rem] overflow-hidden hover-lift h-full flex flex-col">
-                <div className="img-zoom h-56 overflow-hidden relative bg-gradient-to-br from-ice to-sky-100">
+                <div className="img-zoom h-56 overflow-hidden relative bg-gradient-to-br from-ice to-sky-100 dark:to-[#101c34]">
                   {c.image
                     ? <img src={c.image} alt={c.title} className="w-full h-full object-cover" />
                     : <div className="w-full h-full grid place-items-center"><Cross className="w-16 h-16 text-royal/25" /></div>}
@@ -71,12 +71,12 @@ export function Gallery() {
                   style={{ gridTemplateColumns: (g.images || []).length > 1 ? '2fr 1fr' : '1fr' }}>
                   {(g.images || []).slice(0, 3).map((src, j) => (
                     <button key={j} onClick={() => setLightbox(src)}
-                      className={`img-zoom overflow-hidden bg-gradient-to-br from-ice to-sky-100 ${j === 0 ? 'row-span-2 h-64' : 'h-[7.6rem]'}`}>
+                      className={`img-zoom overflow-hidden bg-gradient-to-br from-ice to-sky-100 dark:to-[#101c34] ${j === 0 ? 'row-span-2 h-64' : 'h-[7.6rem]'}`}>
                       <img src={src} alt={g.title} className="w-full h-full object-cover" />
                     </button>
                   ))}
                   {(!g.images || !g.images.length) && (
-                    <div className="h-48 grid place-items-center bg-gradient-to-br from-ice to-sky-100 rounded-[1.6rem]">
+                    <div className="h-48 grid place-items-center bg-gradient-to-br from-ice to-sky-100 dark:to-[#101c34] rounded-[1.6rem]">
                       <svg width="56" height="56" viewBox="0 0 24 24" fill="none" className="text-royal/30"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" strokeWidth="2" /><circle cx="9" cy="9" r="2" stroke="currentColor" strokeWidth="2" /><path d="m21 15-4.5-4.5L6 21" stroke="currentColor" strokeWidth="2" /></svg>
                     </div>
                   )}
@@ -102,7 +102,7 @@ export function Gallery() {
       <AnimatePresence>
         {lightbox && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[90] bg-ink/80 backdrop-blur-sm grid place-items-center p-6"
+            className="fixed inset-0 z-[90] bg-ink/80 dark:bg-black/80 backdrop-blur-sm grid place-items-center p-6"
             onClick={() => setLightbox(null)}>
             <motion.img initial={{ scale: .85, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: .9, opacity: 0 }}
               transition={{ duration: .5, ease }}
@@ -134,7 +134,7 @@ export function Research() {
                   <span className="text-xs font-bold text-ink/40">{r.year}</span>
                 </div>
                 {r.image && (
-                  <div className="img-zoom h-40 overflow-hidden rounded-2xl mt-5 bg-gradient-to-br from-ice to-sky-100">
+                  <div className="img-zoom h-40 overflow-hidden rounded-2xl mt-5 bg-gradient-to-br from-ice to-sky-100 dark:to-[#101c34]">
                     <img src={r.image} alt={r.title} className="w-full h-full object-cover" />
                   </div>
                 )}
@@ -142,7 +142,7 @@ export function Research() {
                 {r.authors && <div className="text-xs font-bold text-ink/45 mt-2">{r.authors}</div>}
                 <p className="text-ink/55 leading-relaxed mt-3 line-clamp-3 flex-1" style={{ fontSize: fs(typo.cardBody) }}>{r.abstract}</p>
                 <a href={r.link || '#'} target="_blank" rel="noreferrer"
-                  className="btn-sheen mt-6 inline-flex items-center justify-center gap-2 border-2 border-ink text-ink rounded-full px-6 py-3 font-bold hover:bg-ink hover:text-white transition-colors" style={{ fontSize: fs(typo.navLink) }}>
+                  className="btn-sheen mt-6 inline-flex items-center justify-center gap-2 border-2 border-ink text-ink rounded-full px-6 py-3 font-bold hover:bg-ink hover:text-white dark:hover:text-[#0b1e3f] transition-colors" style={{ fontSize: fs(typo.navLink) }}>
                   {s.researchReadCta || 'اقرأ البحث'} <Arrow />
                 </a>
               </article>
